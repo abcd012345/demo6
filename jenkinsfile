@@ -1,0 +1,7 @@
+           // You can add more actions like sending notifications, archiving artifacts, etc.
+        }
+        failure {
+            // This block will be executed if the build fails
+            echo 'Build failed :('
+
+            // You can add more actions like sending notifications, triggering alerts
