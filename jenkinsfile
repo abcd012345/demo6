@@ -1,7 +1,51 @@
-           // You can add more actions like sending notifications, archiving artifacts, etc.
+    pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from your Git repository
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Use Maven to build the Java project
+                sh 'mvn clean package'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Run tests using Maven
+                sh 'mvn test'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Assuming your project needs deployment steps
+                // Replace this with actual deployment commands
+                sh 'echo "Deploying the project"'
+            }
+        }
+    }
+    
+    post {
+        // Define post-build actions here
+        success {
+            // This block will be executed if the build is successful
+            echo 'Build successful!'
+
+            // You can add more actions like sending notifications, archiving artifacts, etc.
         }
         failure {
             // This block will be executed if the build fails
             echo 'Build failed :('
 
-            // You can add more actions like sending notifications, triggering alerts
+            // You can add more actions like sending notifications, triggering alerts, etc.
+        }
+    }
+}
+   
